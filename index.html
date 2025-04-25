@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scene3D 웹 컴포넌트 번들 데모</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .component-container {
+      width: 100%;
+      height: 80vh;
+    }
+
+    .scene-selector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 0 0 8px 0;
+      z-index: 1000;
+    }
+
+    .scene-selector select {
+      padding: 4px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .scene-selector button {
+      padding: 8px 16px;
+      margin-left: 8px;
+      font-size: 14px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .scene-selector button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene-selector">
+    <select id="scene-id">
+      <option value="1" selected>Scene 1</option>
+      <option value="2">Scene 2</option>
+      <option value="3">Scene 3</option>
+      <option value="4">Scene 4</option>
+      <option value="5">Scene 5</option>
+      <option value="6">Scene 6</option>
+      <option value="7">Scene 7</option>
+      <option value="8">Scene 8</option>
+      <option value="9">Scene 9</option>
+      <option value="10">Scene 10</option>
+      <option value="11">Scene 11</option>
+      <option value="12">Scene 12</option>
+      <option value="13">Scene 13</option>
+      <option value="14">Scene 14</option>
+      <option value="15">Scene 15</option>
+      <option value="16">Scene 16</option>
+      <option value="17">Scene 17</option>
+      <option value="18">Scene 18</option>
+      <option value="19">Scene 19</option>
+      <option value="20">Scene 20</option>
+      <option value="21">Scene 21</option>
+    </select>
+    <button id="load-scene">Load</button>
+  </div>
+
+  <div class="container">
+    <div class="component-container">
+      <scene-3d id="1"></scene-3d>
+    </div>
+  </div>
+
+  <!-- 웹 컴포넌트 로드 (번들 버전) -->
+  <script src="./embed-bundle.js"></script>
+  <!-- 카메라 브릿지 로드 -->
+  <!-- <script src="./camera-bridge.js"></script> -->
+  <!-- 카메라 인디케이터 로드 -->
+  <!-- <script src="./camera-indicator.js"></script>  -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sceneSelector = document.getElementById('scene-id');
+      const loadButton = document.getElementById('load-scene');
+      const container = document.querySelector('.component-container');
+      let sceneElement = document.querySelector('scene-3d');
+
+      // 씬 로드 함수
+      function loadScene(sceneId) {
+        console.log(`[데모] Scene ${sceneId} 로드 요청`);
+        
+        // 기존 요소가 있으면 제거
+        if (sceneElement) {
+          console.log(`[데모] 기존 scene-3d 요소 제거`);
+          sceneElement.remove();
+        }
+        
+        // 새 씬 컴포넌트 생성 및 추가
+        sceneElement = document.createElement('scene-3d');
+        sceneElement.setAttribute('id', sceneId);
+        container.appendChild(sceneElement);
+        
+        console.log(`[데모] 새로운 scene-3d 요소 생성 (ID: ${sceneId})`);
+        
+        // 씬 로드 후 카메라 브릿지 다시 연결
+        setTimeout(() => {
+          console.log(`[데모] 카메라 브릿지 재연결 시도`);
+          patchSceneForCameraBridge(sceneElement);
+        }, 1000);
+      }
+
+      // 씬 요소에 카메라 브릿지 패치 적용
+      function patchSceneForCameraBridge(element) {
+        if (element.animate && typeof element.animate === 'function') {
+          const originalAnimate = element.animate;
+          
+          // 업데이트 간격 관리를 위한 변수
+          let lastUpdateTime = 0;
+          const updateInterval = 100; // ms
+          
+          element.animate = function() {
+            // 원래 animate 메서드 호출
+            const result = originalAnimate.apply(this, arguments);
+            
+            const now = Date.now();
+            if (now - lastUpdateTime > updateInterval) {
+              lastUpdateTime = now;
+              
+              // 카메라 정보 브릿지를 통해 업데이트
+              if (this.camera) {
+                window.CameraBridge.updateCameraInfo(this.camera);
+              }
+            }
+            
+            return result;
+          };
+          
+          console.log('[데모] 새 씬에 카메라 브릿지 패치 적용 완료');
+        } else {
+          console.warn('[데모] 새 씬에 animate 함수를 찾을 수 없습니다');
+          // animate 함수가 나중에 로드될 수 있으므로 재시도
+          setTimeout(() => patchSceneForCameraBridge(element), 500);
+        }
+      }
+
+      // 로드 버튼 클릭 시 씬 변경
+      loadButton.addEventListener('click', function() {
+        const selectedSceneId = sceneSelector.value;
+        console.log(`[데모] 선택된 씬 ID: ${selectedSceneId}`);
+        loadScene(selectedSceneId);
+      });
+
+      // URL에서 씬 ID를 가져오는 기능 (옵션)
+      const urlParams = new URLSearchParams(window.location.search);
+      const sceneParam = urlParams.get('scene');
+      
+      if (sceneParam && sceneParam >= 1 && sceneParam <= 21) {
+        console.log(`[데모] URL 파라미터에서 씬 ID ${sceneParam} 감지`);
+        sceneSelector.value = sceneParam;
+        loadScene(sceneParam);
+      }
+    });
+  </script>
+</body>
+</html> 
