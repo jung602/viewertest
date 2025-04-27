@@ -26,13 +26,13 @@
   {
     "id": 3,
     "model": {
-      "position": [-0.1, -0.6, 1],
+      "position": [-0.15, -0.6, 1],
       "rotation": [0, 3, 0],
       "scale": 0.65
     },
     "camera": {
-      "position": [3.74, 2.06, 9.10],
-      "rotation": [-12.76, 21.85, 4.82]
+      "position": [0.65, 2.43, 9.73],
+      "rotation": [-14.05, 3.70, 0.93]
     }
   },
   {
@@ -62,19 +62,19 @@
   {
     "id": 6,
     "model": {
-      "position": [-0, -0.65, 1],
+      "position": [-0.025, -0.65, 1],
       "rotation": [0, 3.11, 0],
       "scale": 0.55
     },
     "camera": {
-      "position": [0.86, 2.52, 9.69],
-      "rotation": [-14.60, 4.93, 1.28]
+      "position": [-0.26, 2.46, 9.74],
+      "rotation": [-14.18, -1.46, -0.37]
     }
   },
   {
     "id": 7,
     "model": {
-      "position": [-0.1, -0.65, 1],
+      "position": [-0.12, -0.65, 1],
       "rotation": [0, 3, 0],
       "scale": 0.65
     },
@@ -122,7 +122,7 @@
   {
     "id": 11,
     "model": {
-      "position": [-0.35, -0.5, 1],
+      "position": [-0.4, -0.5, 1],
       "rotation": [0, 3, 0],
       "scale": 0.6
     },
@@ -146,19 +146,19 @@
   {
     "id": 13,
     "model": {
-      "position": [-0.2, -0.6, 1],
+      "position": [-0.25, -0.6, 1],
       "rotation": [0, 2.9, 0],
       "scale": 0.6
     },
     "camera": {
-      "position": [0.86, 2.52, 9.69],
-      "rotation": [-14.60, 4.93, 1.28]
+      "position": [-2.04, 1.88, 9.66],
+      "rotation": [-11.01, -11.73, -2.27]
     }
   },
   {
     "id": 14,
     "model": {
-      "position": [0.1, -0.6, 1],
+      "position": [0.05, -0.6, 1],
       "rotation": [0, 3.2, 0],
       "scale": 0.6
     },
@@ -170,7 +170,7 @@
   {
     "id": 15,
     "model": {
-      "position": [-0, -0.6, 1],
+      "position": [-0.1, -0.6, 1],
       "rotation": [0, 3.05, 0],
       "scale": 0.65
     },
@@ -182,7 +182,7 @@
   {
     "id": 16,
     "model": {
-      "position": [-0.15, -0.6, 1],
+      "position": [-0.2, -0.6, 1],
       "rotation": [0, 2.95, 0],
       "scale": 0.6
     },
@@ -194,12 +194,12 @@
   {
     "id": 17,
     "model": {
-      "position": [0.1, -0.6, 1],
-      "rotation": [0, 3.15, 0],
+      "position": [-0, -0.6, 1],
+      "rotation": [0, 3.1, 0],
       "scale": 0.59
     },
     "camera": {
-      "position": [3.79, 1.31, 9.21],
+      "position": [1, 1.31, 9.21],
       "rotation": [-8.09, 22.14, 3.07]
     }
   },
@@ -243,11 +243,11 @@
     "id": 21,
     "model": {
       "position": [-0.4, -1.7, 1],
-      "rotation": [0, 2.9, 0],
+      "rotation": [0, 2.8, 0],
       "scale": 1
     },
     "camera": {
-      "position": [0.88, 1.31, 9.92],
+      "position": [0, 1.31, 9.92],
       "rotation": [-7.52, 5.03, 0.66]
     }
   }

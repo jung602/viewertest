@@ -67,7 +67,7 @@
               display: block;
               width: 100% !important;
               height: 100% !important;
-              background-color: #303030;
+              background-color: white;
             }
             .logo {
               position: absolute;
@@ -92,22 +92,25 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              color: white;
+              color: #666666;
               font-family: Arial, sans-serif;
               text-align: center;
               z-index: 9800;
+              background-color: white;
+              padding: 15px;
+              border-radius: 5px;
             }
             .progress-bar {
               width: 200px;
               height: 4px;
-              background-color: #444;
+              background-color: #eeeeee;
               margin: 10px auto;
               position: relative;
             }
             .progress-fill {
               position: absolute;
               height: 100%;
-              background-color: #fff;
+              background-color: #666666;
               width: 0%;
               transition: width 0.3s;
             }
@@ -188,11 +191,23 @@
         } catch (error) {
           console.error('ThreeJS 초기화 중 오류 발생:', error);
           
-          const errorMsg = document.createElement('div');
-          errorMsg.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 5px;';
-          errorMsg.textContent = '3D 모델을 로드할 수 없습니다. WebGL이 지원되지 않거나 오류가 발생했습니다.';
+          // 오류 발생 시 로딩 표시기 숨기기
+          if (this.loadingEl) {
+            this.loadingEl.style.display = 'none';
+          }
           
-          this.canvasContainer.appendChild(errorMsg);
+          const errorContainer = document.createElement('div');
+          errorContainer.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 5px; text-align: center;';
+          
+          const reloadButton = document.createElement('button');
+          reloadButton.textContent = 'Reload';
+          reloadButton.style.cssText = 'margin-top: 15px; padding: 8px 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;';
+          reloadButton.addEventListener('click', () => {
+            window.location.reload();
+          });
+          errorContainer.appendChild(reloadButton);
+          
+          this.canvasContainer.appendChild(errorContainer);
         }
       }
       
@@ -217,7 +232,7 @@
       initThreeJS() {
         // 씬 생성
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x303030);
+        this.scene.background = new THREE.Color(0xffffff);
         
         // 카메라 생성
         this.camera = new THREE.PerspectiveCamera(10, this.canvas.clientWidth / this.canvas.clientHeight, 0.5, 1000);
@@ -488,17 +503,6 @@
         this.controls.update();
       }
       
-      // 대체 객체 생성
-      loadBasicFallbackObject() {
-        if (this.loadingEl) {
-          this.loadingEl.innerHTML = '<div>모델 로딩 실패 - 대체 모델 표시 중</div>';
-          setTimeout(() => {
-            this.loadingEl.style.display = 'none';
-          }, 2000);
-        }
-        
-        this.render();
-      }
       
       // 렌더링
       render() {
