@@ -197,11 +197,11 @@
           }
           
           const errorContainer = document.createElement('div');
-          errorContainer.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ff0000; background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 5px; text-align: center;';
+          errorContainer.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;';
           
           const reloadButton = document.createElement('button');
           reloadButton.textContent = 'Reload';
-          reloadButton.style.cssText = 'margin-top: 15px; padding: 8px 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;';
+          reloadButton.style.cssText = 'padding: 8px 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;';
           reloadButton.addEventListener('click', () => {
             window.location.reload();
           });
@@ -503,7 +503,7 @@
         this.controls.update();
       }
       
-      
+            
       // 렌더링
       render() {
         if (this.renderer && this.scene && this.camera) {
@@ -520,6 +520,8 @@
           this.render();
         }
       }
+
+
     }
     
     // 웹 컴포넌트 등록
