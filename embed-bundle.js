@@ -99,13 +99,17 @@
               background-color: white;
               padding: 15px;
               border-radius: 5px;
+              width: 200px;
+              box-sizing: border-box;
+              overflow: hidden;
             }
             .progress-bar {
-              width: 200px;
+              width: 100%;
               height: 4px;
               background-color: #eeeeee;
               margin: 10px auto;
               position: relative;
+              overflow: hidden;
             }
             .progress-fill {
               position: absolute;
@@ -113,6 +117,8 @@
               background-color: #666666;
               width: 0%;
               transition: width 0.3s;
+              left: 0;
+              top: 0;
             }
           </style>
           <div class="container">
