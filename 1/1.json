@@ -5,8 +5,7 @@
 	},
 	"extensionsUsed":[
 		"EXT_texture_webp",
-		"KHR_materials_transmission",
-		"KHR_materials_ior"
+		"KHR_materials_transmission"
 	],
 	"extensionsRequired":[
 		"EXT_texture_webp"
@@ -59,10 +58,13 @@
 			"doubleSided":true,
 			"extensions":{
 				"KHR_materials_transmission":{
-					"transmissionFactor":1
+					"transmissionFactor":1,
+					"transmissionTexture":{
+						"index":4
+					}
 				}
 			},
-			"name":"glass",
+			"name":"1.001_Baked",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					0.25,
@@ -70,8 +72,8 @@
 					0.25,
 					0.6
 				],
-				"metallicFactor":0,
-				"roughnessFactor":0.2
+				"metallicFactor":0.2,
+				"roughnessFactor":0.20000000298023224
 			}
 		}
 	],
@@ -132,6 +134,14 @@
 				}
 			},
 			"sampler":0
+		},
+		{
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":3
+				}
+			},
+			"sampler":0
 		}
 	],
 	"images":[
@@ -149,6 +159,11 @@
 			"mimeType":"image/webp",
 			"name":"rarerow1_Bake3_CyclesBake_ROUGHNESS",
 			"uri":"rarerow1_Bake3_CyclesBake_ROUGHNESS.webp"
+		},
+		{
+			"mimeType":"image/webp",
+			"name":"1",
+			"uri":"1.webp"
 		}
 	],
 	"accessors":[
@@ -189,7 +204,7 @@
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":486,
+			"count":1042,
 			"max":[
 				0.6774400472640991,
 				0.12856318056583405,
@@ -205,13 +220,13 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":486,
+			"count":1042,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":486,
+			"count":1042,
 			"type":"VEC2"
 		},
 		{
@@ -248,26 +263,26 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":5832,
+			"byteLength":12504,
 			"byteOffset":3426220,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3888,
-			"byteOffset":3432052,
+			"byteLength":8336,
+			"byteOffset":3438724,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3888,
-			"byteOffset":3435940,
+			"byteLength":8336,
+			"byteOffset":3447060,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":4956,
-			"byteOffset":3439828,
+			"byteOffset":3455396,
 			"target":34963
 		}
 	],
@@ -279,7 +294,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":3444784,
+			"byteLength":3460352,
 			"uri":"1.bin"
 		}
 	]
