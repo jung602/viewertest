@@ -6,12 +6,11 @@
   // 디버그 모드 설정 - 프로덕션에서는 false로 설정
   const DEBUG = false;
   
-  // CDN 소스 다중화 - 폴백 메커니즘을 위한 설정
+  // CDN 소스
   const THREEJS_VERSION = '0.140.0';
   const CDN_SOURCES = [
     `https://cdn.jsdelivr.net/npm/three@${THREEJS_VERSION}`,
-    `https://unpkg.com/three@${THREEJS_VERSION}`,
-    `https://cdnjs.cloudflare.com/ajax/libs/three.js/${THREEJS_VERSION}`
+    `https://unpkg.com/three@${THREEJS_VERSION}`
   ];
   
   // 유틸리티 로깅 함수
@@ -19,17 +18,6 @@
     warn: (msg, error) => DEBUG && console.warn(msg, error),
     error: (msg, error) => DEBUG && console.error(msg, error),
     info: (msg) => DEBUG && console.info(msg)
-  };
-  
-  // 오류 처리 유틸리티
-  const errorHandler = {
-    showErrorMessage: (customMessage) => {
-      const errorEl = document.createElement('div');
-      errorEl.textContent = customMessage || '리소스 로드 실패. 페이지를 새로고침 해주세요.';
-      errorEl.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:20px; border:1px solid #ccc;';
-      document.body.appendChild(errorEl);
-      return errorEl;
-    }
   };
   
   // IndexedDB를 사용한 스크립트 캐싱 기능
@@ -59,13 +47,13 @@
         
         request.onerror = (event) => {
           logger.warn('IndexedDB 초기화 실패, 캐싱 없이 진행:', event.target.error);
-          resolve(null); // 에러시에도 reject 하지 않고 null로 해결
+          resolve(null);
         };
       });
     }
     
     async getScript(url) {
-      await this.initPromise; // DB 초기화 완료 대기
+      await this.initPromise;
       if (!this.db) return null;
       
       return new Promise((resolve) => {
@@ -84,7 +72,7 @@
     }
     
     async saveScript(url, content) {
-      await this.initPromise; // DB 초기화 완료 대기
+      await this.initPromise;
       if (!this.db) return false;
       
       return new Promise((resolve) => {
@@ -158,12 +146,10 @@
     for (let cdnIndex = 0; cdnIndex < CDN_SOURCES.length; cdnIndex++) {
       const fullUrl = `${CDN_SOURCES[cdnIndex]}${path}`;
       
-      // 캐시에서 먼저 확인
       if (await loadFromCache(fullUrl)) {
         return true;
       }
       
-      // CDN에서 로드 시도
       if (await loadFromSingleCDN(fullUrl, maxRetries, retryDelay)) {
         return true;
       }
@@ -196,31 +182,23 @@
   // 필요한 라이브러리 로드 및 검증
   async function loadDependencies() {
     try {
-      // 코어 라이브러리 로드
       await loadScriptWithRetryAndFallback('/build/three.min.js');
-      
-      // 초기화 검증
       await verifyThreeJsLoaded();
       
-      // 추가 의존성 로드
       await Promise.all([
         loadScriptWithRetryAndFallback('/examples/js/controls/OrbitControls.js'),
         loadScriptWithRetryAndFallback('/examples/js/loaders/GLTFLoader.js')
       ]);
       
-      // 컴포넌트 정의
       defineComponent();
     } catch (error) {
       logger.error('라이브러리 로드 실패:', error);
-      errorHandler.showErrorMessage();
     }
   }
   
-  // 로드 시작
   loadDependencies();
   
   function defineComponent() {
-    // Scene3D 웹 컴포넌트 정의
     class Scene3D extends HTMLElement {
       static get observedAttributes() {
         return ['id'];
@@ -239,11 +217,9 @@
         this.initializeDOM();
       }
       
-      // DOM 요소 초기화
       initializeDOM() {
         const shadowRoot = this.shadowRoot;
         
-        // CSS 스타일 적용
         shadowRoot.innerHTML = `
           <style>
             :host { display: block; width: 100%; }
@@ -340,26 +316,21 @@
           </div>
         `;
         
-        // 주요 요소에 대한 참조 저장
         this.canvas = shadowRoot.querySelector('canvas');
         this.loadingEl = shadowRoot.querySelector('.loading');
         this.canvasContainer = shadowRoot.querySelector('.canvas-container');
         this.progressFill = shadowRoot.querySelector('.progress-fill');
       }
       
-      // 이벤트 리스너 설정
       setupEventListeners() {
-        // 마우스 이벤트
         this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
         this.mouseUpHandler = this.handleMouseUp.bind(this);
         document.addEventListener('mouseup', this.mouseUpHandler);
         
-        // 터치 이벤트
         this.canvas.addEventListener('touchstart', this.handleTouchStart.bind(this));
         this.touchEndHandler = this.handleTouchEnd.bind(this);
         document.addEventListener('touchend', this.touchEndHandler);
         
-        // 리사이즈 이벤트
         this.handleResize = this.onResize.bind(this);
         window.addEventListener('resize', this.handleResize);
       }
@@ -384,7 +355,6 @@
         this.canvasContainer.style.cursor = 'grab';
       }
       
-      // 속성 변경 시 호출되는 메서드
       attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'id' && oldValue !== newValue) {
           this.modelId = newValue;
@@ -397,7 +367,6 @@
         }
       }
       
-      // 컴포넌트가 DOM에 연결될 때
       connectedCallback() {
         try {
           this.setupEventListeners();
@@ -405,7 +374,6 @@
         } catch (error) {
           logger.error('ThreeJS 초기화 중 오류 발생:', error);
           
-          // 오류 발생 시 로딩 표시기 숨기기
           if (this.loadingEl) {
             this.loadingEl.style.display = 'none';
           }
@@ -425,14 +393,11 @@
         }
       }
       
-      // 컴포넌트가 DOM에서 제거될 때
       disconnectedCallback() {
-        // 이벤트 리스너 제거
         window.removeEventListener('resize', this.handleResize);
         document.removeEventListener('mouseup', this.mouseUpHandler);
         document.removeEventListener('touchend', this.touchEndHandler);
         
-        // 리소스 정리
         if (this.renderer) {
           this.renderer.dispose();
         }
@@ -443,7 +408,6 @@
         }
       }
       
-      // 리사이즈 처리
       onResize() {
         if (!this.camera || !this.renderer) return;
         
@@ -457,13 +421,10 @@
         this.render();
       }
       
-      // ThreeJS 초기화
       initThreeJS() {
-        // 씬 생성
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0xffffff);
         
-        // 카메라 생성
         this.camera = new THREE.PerspectiveCamera(10, this.canvas.clientWidth / this.canvas.clientHeight, 0.5, 1000);
         this.camera.position.set(0.86, 2.52, 9.69);
         this.camera.rotation.set(
@@ -472,7 +433,6 @@
           THREE.MathUtils.degToRad(1.28)
         );
         
-        // 렌더러 생성 - 성능 최적화
         this.renderer = new THREE.WebGLRenderer({ 
           canvas: this.canvas,
           antialias: true, 
@@ -487,24 +447,15 @@
         this.renderer.toneMappingExposure = 0.7;
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         
-        // 컨트롤 설정
         this.controls = new THREE.OrbitControls(this.camera, this.canvas);
         this.setupControls();
         
-        // 조명 설정
         this.setupLights();
-        
-        // 초기 리사이징 적용
         this.onResize();
-        
-        // 모델 로드
         this.loadModel();
-        
-        // 애니메이션 루프 시작
         this.startAnimationLoop();
       }
       
-      // 컨트롤 설정
       setupControls() {
         this.controls.enableZoom = false;
         this.controls.enablePan = false;
@@ -519,29 +470,23 @@
         this.controls.update();
       }
       
-      // 조명 설정
       setupLights() {
-        // 주 방향광
         const light1 = new THREE.DirectionalLight(0xffffff, 1);
         light1.position.set(-5, 3, -7);
         
         const light2 = new THREE.DirectionalLight(0xffffff, 1);
         light2.position.set(-5, 3, 7);
         
-        // 반구광 - 부드러운 배경 조명
         const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x080820, 1);
         
-        // 씬에 조명 추가
         this.scene.add(light1, light2, hemisphereLight);
       }
       
-      // 씬의 모델들을 제거
       clearSceneModels() {
         if (!this.scene) return;
         
         const toRemove = [];
         this.scene.traverse(child => {
-          // 조명과 바닥 메쉬를 제외한 모든 객체
           if (child.type !== 'AmbientLight' && 
               child.type !== 'DirectionalLight' &&
               child.type !== 'HemisphereLight' &&
@@ -554,7 +499,6 @@
         toRemove.forEach(obj => this.scene.remove(obj));
       }
       
-      // 로딩 인디케이터 표시
       showLoadingIndicator() {
         if (this.loadingEl) {
           this.loadingEl.style.display = 'block';
@@ -564,7 +508,6 @@
         }
       }
       
-      // 로딩 진행률 업데이트
       updateLoadingProgress(xhr) {
         if (!this.progressFill) return;
         
@@ -575,14 +518,12 @@
         this.progressFill.style.width = `${percent}%`;
       }
       
-      // 모델 로드
       loadModel() {
         const loader = new THREE.GLTFLoader();
         const modelId = this.modelId;
         const modelPath = `./${modelId}/`;
         const modelUrl = `${modelId}.json`;
 
-        // bin 파일을 json으로 변환하는 핸들러 함수
         const handleBinFiles = (url) => {
           if (url.includes('.bin') && !url.includes('_bin.json')) {
             const binFileName = url.split('/').pop();
@@ -592,38 +533,25 @@
           return url;
         };
         
-        // 원본 로더 함수 저장
         const originalLoadFunc = THREE.FileLoader.prototype.load;
         
-        // 로더 함수 오버라이드
         THREE.FileLoader.prototype.load = function(url, onLoad, onProgress, onError) {
           return originalLoadFunc.call(this, handleBinFiles(url), onLoad, onProgress, onError);
         };
         
-        // 리소스 경로 설정
         loader.setResourcePath(modelPath);
         loader.setPath(modelPath);
         
-        // 모델 설정 로드 후 모델 로드
         this.fetchModelSettings(modelId)
           .then(modelConfig => {
             loader.load(
               modelUrl,
               (gltf) => {
-                // 성공적으로 로드 후 처리
                 const model = gltf.scene;
-                
-                // 최적화 및 설정 적용
                 this.applyModelOptimizations(model, modelConfig);
-                
-                // 씬에 모델 추가
                 this.scene.add(model);
                 this.loadingEl.style.display = 'none';
-                
-                // 원래 로더 함수 복원
                 THREE.FileLoader.prototype.load = originalLoadFunc;
-                
-                // 렌더링
                 this.render();
               },
               (xhr) => this.updateLoadingProgress(xhr),
@@ -631,7 +559,19 @@
                 logger.error('모델 로드 실패:', error);
                 THREE.FileLoader.prototype.load = originalLoadFunc;
                 this.loadingEl.style.display = 'none';
-                errorHandler.showErrorMessage('모델을 불러올 수 없습니다.');
+                
+                const errorContainer = document.createElement('div');
+                errorContainer.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;';
+                
+                const reloadButton = document.createElement('button');
+                reloadButton.textContent = 'Reload';
+                reloadButton.style.cssText = 'padding: 8px 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;';
+                reloadButton.addEventListener('click', () => {
+                  window.location.reload();
+                });
+                errorContainer.appendChild(reloadButton);
+                
+                this.canvasContainer.appendChild(errorContainer);
               }
             );
           })
@@ -639,11 +579,22 @@
             logger.error('모델 설정 로드 실패:', error);
             THREE.FileLoader.prototype.load = originalLoadFunc;
             this.loadingEl.style.display = 'none';
-            errorHandler.showErrorMessage('모델 설정을 불러올 수 없습니다.');
+            
+            const errorContainer = document.createElement('div');
+            errorContainer.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;';
+            
+            const reloadButton = document.createElement('button');
+            reloadButton.textContent = 'Reload';
+            reloadButton.style.cssText = 'padding: 8px 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;';
+            reloadButton.addEventListener('click', () => {
+              window.location.reload();
+            });
+            errorContainer.appendChild(reloadButton);
+            
+            this.canvasContainer.appendChild(errorContainer);
           });
       }
       
-      // 모델 설정 로드
       async fetchModelSettings(modelId) {
         try {
           const response = await fetch('./rarerow.json');
@@ -657,9 +608,7 @@
         }
       }
       
-      // 모델 최적화 및 설정 적용
       applyModelOptimizations(model, modelConfig) {
-        // 스무딩 적용
         model.traverse((node) => {
           if (node.isMesh && node.geometry) {
             node.geometry.computeVertexNormals();
@@ -669,49 +618,40 @@
           }
         });
         
-        // 모델 설정 적용
         if (modelConfig && modelConfig.model) {
           const { position, rotation, scale } = modelConfig.model;
           
-          // 위치 설정
           if (position && position.length === 3) {
             model.position.set(...position);
           }
           
-          // 회전 설정
           if (rotation && rotation.length === 3) {
             model.rotation.set(...rotation);
           }
           
-          // 스케일 설정
           if (typeof scale === 'number') {
             model.scale.set(scale, scale, scale);
           } else if (scale && scale.length === 3) {
             model.scale.set(...scale);
           }
         } else {
-          // 기본 설정
           model.scale.set(0.6, 0.6, 0.6);
           model.position.set(-0.35, modelConfig ? -1 : -0.55, 1);
           model.rotation.set(0, (Math.PI * 3) - 0.1, 0);
         }
         
-        // 카메라 설정 적용
         if (modelConfig && modelConfig.camera) {
           this.applyCameraSettings(modelConfig.camera);
         }
       }
       
-      // 카메라 설정 적용
       applyCameraSettings(cameraConfig) {
         if (!cameraConfig) return;
         
-        // 카메라 위치 설정
         if (cameraConfig.position && cameraConfig.position.length === 3) {
           this.camera.position.set(...cameraConfig.position);
         }
         
-        // 카메라 회전 설정
         if (cameraConfig.rotation && cameraConfig.rotation.length === 3) {
           this.camera.rotation.set(
             THREE.MathUtils.degToRad(cameraConfig.rotation[0]),
@@ -720,20 +660,16 @@
           );
         }
         
-        // 컨트롤 업데이트
         this.controls.update();
       }
       
-      // 렌더링
       render() {
         if (this.renderer && this.scene && this.camera) {
           this.renderer.render(this.scene, this.camera);
         }
       }
       
-      // 애니메이션 루프 시작
       startAnimationLoop() {
-        // 기존 애니메이션 정리
         if (this.animationFrameId) {
           cancelAnimationFrame(this.animationFrameId);
         }
@@ -751,7 +687,6 @@
       }
     }
     
-    // 웹 컴포넌트 등록
     customElements.define('scene-3d', Scene3D);
   }
 })(); 
