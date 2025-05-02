@@ -4,7 +4,11 @@
 		"version":"2.0"
 	},
 	"extensionsUsed":[
+		"EXT_texture_webp",
 		"KHR_materials_transmission"
+	],
+	"extensionsRequired":[
+		"EXT_texture_webp"
 	],
 	"scene":0,
 	"scenes":[
@@ -109,50 +113,74 @@
 	],
 	"textures":[
 		{
-			"sampler":0,
-			"source":0
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":0
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":1
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":1
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":0
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":0
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":2
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":2
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":3
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":3
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":3
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":3
+				}
+			},
+			"sampler":0
 		}
 	],
 	"images":[
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"rarerow5_Bake1_CyclesBake_COMBINED",
-			"uri":"rarerow5_Bake1_CyclesBake_COMBINED.png"
+			"uri":"rarerow5_Bake1_CyclesBake_COMBINED.webp"
 		},
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"rarerow5_Bake1_CyclesBake_NORMAL",
-			"uri":"rarerow5_Bake1_CyclesBake_NORMAL.png"
+			"uri":"rarerow5_Bake1_CyclesBake_NORMAL.webp"
 		},
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"rarerow5_Bake1_CyclesBake_ROUGHNESS",
-			"uri":"rarerow5_Bake1_CyclesBake_ROUGHNESS.png"
+			"uri":"rarerow5_Bake1_CyclesBake_ROUGHNESS.webp"
 		},
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"glass_Bake1_PBR_Thickness",
-			"uri":"glass_Bake1_PBR_Thickness.png"
+			"uri":"glass_Bake1_PBR_Thickness.webp"
 		}
 	],
 	"accessors":[

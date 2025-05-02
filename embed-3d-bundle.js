@@ -597,7 +597,7 @@
       
       async fetchModelSettings(modelId) {
         try {
-          const response = await fetch('./rarerow.json');
+          const response = await fetch('./rareraw.json');
           if (!response.ok) throw new Error('설정 파일을 불러올 수 없습니다.');
           
           const configData = await response.json();
