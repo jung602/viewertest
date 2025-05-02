@@ -1,26 +1,18 @@
-// 번들링된 Three.js 라이브러리 코드
-// 실제로는 webpack, rollup 등의 번들러를 통해 Three.js와 관련 라이브러리를 포함해야 합니다
-// 이 파일은 예시용이며, 실제 배포를 위해서는 번들링 도구를 사용하여 생성해야 합니다
-
 (function() {
-  // 디버그 모드 설정 - 프로덕션에서는 false로 설정
   const DEBUG = false;
   
-  // CDN 소스
   const THREEJS_VERSION = '0.140.0';
   const CDN_SOURCES = [
     `https://cdn.jsdelivr.net/npm/three@${THREEJS_VERSION}`,
     `https://unpkg.com/three@${THREEJS_VERSION}`
   ];
   
-  // 유틸리티 로깅 함수
   const logger = {
     warn: (msg, error) => DEBUG && console.warn(msg, error),
     error: (msg, error) => DEBUG && console.error(msg, error),
     info: (msg) => DEBUG && console.info(msg)
   };
   
-  // IndexedDB를 사용한 스크립트 캐싱 기능
   class ScriptCache {
     constructor() {
       this.dbName = 'threejs-cache';
