@@ -4,7 +4,9 @@
 		"version":"2.0"
 	},
 	"extensionsUsed":[
-		"EXT_texture_webp"
+		"EXT_texture_webp",
+		"KHR_materials_transmission",
+		"KHR_materials_ior"
 	],
 	"extensionsRequired":[
 		"EXT_texture_webp"
@@ -21,7 +23,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"rarerow2_combined"
+			"name":"rarerow2_combine"
 		}
 	],
 	"materials":[
@@ -35,7 +37,7 @@
 			"emissiveTexture":{
 				"index":0
 			},
-			"name":"rarerow2_Baked.003",
+			"name":"rarerow2_Baked.001",
 			"normalTexture":{
 				"index":1
 			},
@@ -53,17 +55,26 @@
 			"doubleSided":true,
 			"extensions":{
 				"KHR_materials_transmission":{
-					"transmissionFactor":1
+					"transmissionFactor":1,
+					"transmissionTexture":{
+						"index":4
+					}
+				},
+				"KHR_materials_ior":{
+					"ior":1.4500000476837158
 				}
 			},
-			"name":"Material",
+			"name":"glass_Baked",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.25,
-					0.25,
-					0.25,
+					1,
+					1,
+					1,
 					0.6000000238418579
 				],
+				"baseColorTexture":{
+					"index":5
+				},
 				"metallicFactor":0,
 				"roughnessFactor":0.20000000298023224
 			}
@@ -71,26 +82,22 @@
 	],
 	"meshes":[
 		{
-			"name":"Plane.001",
+			"name":"Plane.005",
 			"primitives":[
 				{
 					"attributes":{
 						"POSITION":0,
-						"TEXCOORD_0":1,
-						"COLOR_0":2,
-						"COLOR_1":3
+						"TEXCOORD_0":1
 					},
-					"indices":4,
+					"indices":2,
 					"material":0
 				},
 				{
 					"attributes":{
-						"POSITION":5,
-						"TEXCOORD_0":6,
-						"COLOR_0":7,
-						"COLOR_1":8
+						"POSITION":3,
+						"TEXCOORD_0":4
 					},
-					"indices":9,
+					"indices":5,
 					"material":1
 				}
 			]
@@ -128,6 +135,22 @@
 				}
 			},
 			"sampler":0
+		},
+		{
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":3
+				}
+			},
+			"sampler":0
+		},
+		{
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":3
+				}
+			},
+			"sampler":0
 		}
 	],
 	"images":[
@@ -145,6 +168,11 @@
 			"mimeType":"image/webp",
 			"name":"rarerow2_Bake1_CyclesBake_ROUGHNESS",
 			"uri":"rarerow2_Bake1_CyclesBake_ROUGHNESS.webp"
+		},
+		{
+			"mimeType":"image/webp",
+			"name":"glass_Bake1_PBR_Thickness",
+			"uri":"glass_Bake1_PBR_Thickness.webp"
 		}
 	],
 	"accessors":[
@@ -172,27 +200,14 @@
 		},
 		{
 			"bufferView":2,
-			"componentType":5121,
-			"count":102902,
-			"normalized":true,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":3,
-			"componentType":5126,
-			"count":102902,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":4,
 			"componentType":5125,
 			"count":336072,
 			"type":"SCALAR"
 		},
 		{
-			"bufferView":5,
+			"bufferView":3,
 			"componentType":5126,
-			"count":937,
+			"count":932,
 			"max":[
 				0.3386423587799072,
 				1.5203827619552612,
@@ -206,26 +221,13 @@
 			"type":"VEC3"
 		},
 		{
-			"bufferView":6,
+			"bufferView":4,
 			"componentType":5126,
-			"count":937,
+			"count":932,
 			"type":"VEC2"
 		},
 		{
-			"bufferView":7,
-			"componentType":5121,
-			"count":937,
-			"normalized":true,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":8,
-			"componentType":5126,
-			"count":937,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":9,
+			"bufferView":5,
 			"componentType":5123,
 			"count":3480,
 			"type":"SCALAR"
@@ -246,50 +248,26 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":411608,
-			"byteOffset":2058040,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":1234824,
-			"byteOffset":2469648,
-			"target":34962
-		},
-		{
-			"buffer":0,
 			"byteLength":1344288,
-			"byteOffset":3704472,
+			"byteOffset":2058040,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":11244,
-			"byteOffset":5048760,
+			"byteLength":11184,
+			"byteOffset":3402328,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":7496,
-			"byteOffset":5060004,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":3748,
-			"byteOffset":5067500,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":11244,
-			"byteOffset":5071248,
+			"byteLength":7456,
+			"byteOffset":3413512,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":6960,
-			"byteOffset":5082492,
+			"byteOffset":3420968,
 			"target":34963
 		}
 	],
@@ -301,7 +279,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":5089452,
+			"byteLength":3427928,
 			"uri":"2.bin"
 		}
 	]

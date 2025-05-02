@@ -309,7 +309,7 @@
               </div>
               <div class="logo">
                 <a href="https://www.altroom3d.com/" target="_blank" rel="noopener noreferrer">
-                  <img src="https://altroom3d.com/logowhite.png" alt="Logo">
+                  <img src="./logowhite.png" alt="Logo">
                 </a>
               </div>
             </div>
@@ -444,7 +444,7 @@
         this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        this.renderer.toneMappingExposure = 0.7;
+        this.renderer.toneMappingExposure = 1;
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         
         this.controls = new THREE.OrbitControls(this.camera, this.canvas);
@@ -471,13 +471,13 @@
       }
       
       setupLights() {
-        const light1 = new THREE.DirectionalLight(0xffffff, 1);
+        const light1 = new THREE.DirectionalLight(0xffffff, 0.5);
         light1.position.set(-5, 3, -7);
         
-        const light2 = new THREE.DirectionalLight(0xffffff, 1);
+        const light2 = new THREE.DirectionalLight(0xffffff, 0.1);
         light2.position.set(-5, 3, 7);
         
-        const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x080820, 1);
+        const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x080820, 0.5);
         
         this.scene.add(light1, light2, hemisphereLight);
       }

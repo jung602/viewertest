@@ -21,7 +21,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"rarerow16_combined",
+			"name":"rarerow16_combine",
 			"translation":[
 				0,
 				0,
@@ -128,7 +128,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":66073,
+			"count":66207,
 			"max":[
 				3.163752794265747,
 				3.741792678833008,
@@ -144,82 +144,82 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":66073,
+			"count":66207,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":66073,
+			"count":66207,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5121,
-			"count":66073,
+			"count":66207,
 			"normalized":true,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":66073,
+			"count":66207,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":66073,
+			"count":66207,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5125,
-			"count":203004,
+			"count":203850,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":792876,
+			"byteLength":794484,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":792876,
-			"byteOffset":792876,
+			"byteLength":794484,
+			"byteOffset":794484,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":528584,
-			"byteOffset":1585752,
+			"byteLength":529656,
+			"byteOffset":1588968,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":264292,
-			"byteOffset":2114336,
+			"byteLength":264828,
+			"byteOffset":2118624,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":792876,
-			"byteOffset":2378628,
+			"byteLength":794484,
+			"byteOffset":2383452,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":792876,
-			"byteOffset":3171504,
+			"byteLength":794484,
+			"byteOffset":3177936,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":812016,
-			"byteOffset":3964380,
+			"byteLength":815400,
+			"byteOffset":3972420,
 			"target":34963
 		}
 	],
@@ -231,7 +231,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":4776396,
+			"byteLength":4787820,
 			"uri":"16.bin"
 		}
 	]

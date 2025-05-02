@@ -3,6 +3,12 @@
 		"generator":"Khronos glTF Blender I/O v4.2.57",
 		"version":"2.0"
 	},
+	"extensionsUsed":[
+		"EXT_texture_webp"
+	],
+	"extensionsRequired":[
+		"EXT_texture_webp"
+	],
 	"scene":0,
 	"scenes":[
 		{
@@ -61,12 +67,9 @@
 					"attributes":{
 						"POSITION":0,
 						"NORMAL":1,
-						"TEXCOORD_0":2,
-						"COLOR_0":3,
-						"COLOR_1":4,
-						"COLOR_2":5
+						"TEXCOORD_0":2
 					},
-					"indices":6,
+					"indices":3,
 					"material":0
 				}
 			]
@@ -74,44 +77,60 @@
 	],
 	"textures":[
 		{
-			"sampler":0,
-			"source":0
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":0
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":1
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":1
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":0
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":0
+				}
+			},
+			"sampler":0
 		},
 		{
-			"sampler":0,
-			"source":2
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":2
+				}
+			},
+			"sampler":0
 		}
 	],
 	"images":[
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"rarerow12_Bake1_CyclesBake_COMBINED",
-			"uri":"rarerow12_Bake1_CyclesBake_COMBINED.png"
+			"uri":"rarerow12_Bake1_CyclesBake_COMBINED.webp"
 		},
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"rarerow12_Bake1_CyclesBake_NORMAL",
-			"uri":"rarerow12_Bake1_CyclesBake_NORMAL.png"
+			"uri":"rarerow12_Bake1_CyclesBake_NORMAL.webp"
 		},
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/webp",
 			"name":"rarerow12_Bake1_CyclesBake_ROUGHNESS",
-			"uri":"rarerow12_Bake1_CyclesBake_ROUGHNESS.png"
+			"uri":"rarerow12_Bake1_CyclesBake_ROUGHNESS.webp"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":84328,
+			"count":83636,
 			"max":[
 				6.528266906738281,
 				2.919051170349121,
@@ -127,36 +146,17 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":84328,
+			"count":83636,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":84328,
+			"count":83636,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
-			"componentType":5121,
-			"count":84328,
-			"normalized":true,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":84328,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":84328,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
 			"componentType":5125,
 			"count":265863,
 			"type":"SCALAR"
@@ -165,44 +165,26 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1011936,
+			"byteLength":1003632,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1011936,
-			"byteOffset":1011936,
+			"byteLength":1003632,
+			"byteOffset":1003632,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":674624,
-			"byteOffset":2023872,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":337312,
-			"byteOffset":2698496,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":1011936,
-			"byteOffset":3035808,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":1011936,
-			"byteOffset":4047744,
+			"byteLength":669088,
+			"byteOffset":2007264,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":1063452,
-			"byteOffset":5059680,
+			"byteOffset":2676352,
 			"target":34963
 		}
 	],
@@ -214,7 +196,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":6123132,
+			"byteLength":3739804,
 			"uri":"12.bin"
 		}
 	]
