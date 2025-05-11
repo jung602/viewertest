@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v4.4.55",
+		"generator":"Khronos glTF Blender I/O v4.2.57",
 		"version":"2.0"
 	},
 	"extensionsUsed":[
@@ -21,7 +21,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"rarerow13_cob",
+			"name":"rarerow13comb",
 			"rotation":[
 				0.7071068286895752,
 				0,
@@ -51,7 +51,7 @@
 			"emissiveTexture":{
 				"index":0
 			},
-			"name":"rarerow13_Baked.003",
+			"name":"rarerow13_Baked",
 			"normalTexture":{
 				"index":1
 			},
@@ -67,7 +67,7 @@
 	],
 	"meshes":[
 		{
-			"name":"mesh.003",
+			"name":"mesh.001",
 			"primitives":[
 				{
 					"attributes":{
@@ -136,7 +136,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":22558,
+			"count":32467,
 			"max":[
 				1.8722807168960571,
 				0.1650252342224121,
@@ -152,45 +152,45 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":22558,
+			"count":32467,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":22558,
+			"count":32467,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":77169,
+			"count":106167,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":270696,
+			"byteLength":389604,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":270696,
-			"byteOffset":270696,
+			"byteLength":389604,
+			"byteOffset":389604,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":180464,
-			"byteOffset":541392,
+			"byteLength":259736,
+			"byteOffset":779208,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":154338,
-			"byteOffset":721856,
+			"byteLength":212334,
+			"byteOffset":1038944,
 			"target":34963
 		}
 	],
@@ -202,7 +202,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":876196,
+			"byteLength":1251280,
 			"uri":"13.bin"
 		}
 	]

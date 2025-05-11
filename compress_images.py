@@ -30,16 +30,22 @@ def compress_image(input_path, output_path, target_size_kb=1500):
                 img.save(output_path, 'WEBP', quality=quality, method=6)
                 file_size_kb = os.path.getsize(output_path) / 1024
 
-def process_folders():
-    # 1~21 폴더 처리
-    for folder_num in range(1, 22):
+def process_specific_folders(folder_numbers):
+    # 지정된 폴더만 처리
+    for folder_num in folder_numbers:
         folder_path = f"{folder_num}"
         if not os.path.exists(folder_path):
+            print(f"폴더를 찾을 수 없음: {folder_path}")
             continue
             
         # webp 파일 찾기
         webp_files = glob.glob(os.path.join(folder_path, "*.webp"))
         
+        if not webp_files:
+            print(f"{folder_path} 폴더에 webp 파일이 없습니다.")
+            continue
+            
+        print(f"===== {folder_path} 폴더 처리 시작 =====")
         for input_path in webp_files:
             # 출력 파일 경로 설정 (원본 파일명 유지)
             output_path = input_path
@@ -47,6 +53,8 @@ def process_folders():
             print(f"처리 중: {input_path}")
             compress_image(input_path, output_path)
             print(f"완료: {output_path}")
+        print(f"===== {folder_path} 폴더 처리 완료 =====\n")
 
 if __name__ == "__main__":
-    process_folders() 
+    # 13번과 21번 폴더만 처리
+    process_specific_folders([13, 21]) 

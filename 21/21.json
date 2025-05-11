@@ -21,7 +21,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"rarerow21_Baked",
+			"name":"rarerow21.007_combine",
 			"rotation":[
 				0.7071068286895752,
 				0,
@@ -46,7 +46,7 @@
 			"emissiveTexture":{
 				"index":0
 			},
-			"name":"rarerow21_Baked.005",
+			"name":"rarerow21.007_Baked.001",
 			"normalTexture":{
 				"index":1
 			},
@@ -62,7 +62,7 @@
 		{
 			"alphaMode":"BLEND",
 			"doubleSided":true,
-			"name":"glass",
+			"name":"glass.001",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					0.800000011920929,
@@ -77,7 +77,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Plane.006",
+			"name":"Plane.002",
 			"primitives":[
 				{
 					"attributes":{
@@ -137,25 +137,25 @@
 	"images":[
 		{
 			"mimeType":"image/webp",
-			"name":"rarerow21_Bake1_CyclesBake_COMBINED",
-			"uri":"rarerow21_Bake1_CyclesBake_COMBINED.webp"
+			"name":"rarerow21",
+			"uri":"rarerow21.webp"
 		},
 		{
 			"mimeType":"image/webp",
-			"name":"rarerow21_Bake1_CyclesBake_NORMAL",
-			"uri":"rarerow21_Bake1_CyclesBake_NORMAL.webp"
+			"name":"rarerow21",
+			"uri":"rarerow21-1.webp"
 		},
 		{
 			"mimeType":"image/webp",
-			"name":"rarerow21_Bake1_CyclesBake_ROUGHNESS",
-			"uri":"rarerow21_Bake1_CyclesBake_ROUGHNESS.webp"
+			"name":"rarerow21",
+			"uri":"rarerow21-2.webp"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":46718,
+			"count":49056,
 			"max":[
 				3.163753032684326,
 				0.015295147895812988,
@@ -171,19 +171,19 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":46718,
+			"count":49056,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":46718,
+			"count":49056,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":165438,
+			"count":172107,
 			"type":"SCALAR"
 		},
 		{
@@ -224,50 +224,50 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":560616,
+			"byteLength":588672,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":560616,
-			"byteOffset":560616,
+			"byteLength":588672,
+			"byteOffset":588672,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":373744,
-			"byteOffset":1121232,
+			"byteLength":392448,
+			"byteOffset":1177344,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":330876,
-			"byteOffset":1494976,
+			"byteLength":344214,
+			"byteOffset":1569792,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":17328,
-			"byteOffset":1825852,
+			"byteOffset":1914008,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":17328,
-			"byteOffset":1843180,
+			"byteOffset":1931336,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":11552,
-			"byteOffset":1860508,
+			"byteOffset":1948664,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":12528,
-			"byteOffset":1872060,
+			"byteOffset":1960216,
 			"target":34963
 		}
 	],
@@ -279,7 +279,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":1884588,
+			"byteLength":1972744,
 			"uri":"21.bin"
 		}
 	]
